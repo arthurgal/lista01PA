@@ -1,47 +1,40 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> //pra incluir o malloc()
 
-//Função para alocar em ordem crescente
-void ord_crescente(int n, float v[])
-{
+void recebeValores(float *array, int n){
+    for(int i = 0; i<n; i++){
+        scanf("%f", &array[i]);
+    }
+}
+void ordenar(float *array, int n){
     float aux;
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = n - 1; j > i; j--)
-        {
-            if (v[j - 1] > v[j])
-            {
-                aux = v[j - 1];
-                v[j - 1] = v[j];
-                v[j] = aux;
+    int c;
+    for(int i = 0;i < n;i++){
+        for(c = i+1;c < n;c++){
+            if(array[i] > array[c]){
+                aux = array[i];
+                array[i] = array[c];
+                array[c] = aux;
             }
         }
     }
 }
-//ALOCANDO
-int main()
-{
+
+int main(){
     int n;
-    printf("Digite o tamanho do vetor: ");
     scanf("%d", &n);
-    float *v;
-    v = (float *)malloc(n * sizeof(float));
-
-    printf("Digite os valores do vetor: ");
-    for (int i = 0; i < n; i++)
-    {
-        scanf("%f", &v[i]);
+    float *vetor;
+    vetor = malloc(n*sizeof(float)); //aloca memoria para o tamanho desejado no array
+    recebeValores(vetor, n);
+    printf("Antes:\n");
+    for(int i = 0; i< n; i++){
+        printf("%4.2f\n", vetor[i]);
     }
-
-    ord_crescente(n, v);
-
-    for (int i = 0; i < n; i++)
-    {
-        printf(" %.2f", v[i]);
+    ordenar(vetor, n);
+    printf("Depois:\n");
+    for(int i = 0; i< n; i++){
+        printf("%4.2f\n", vetor[i]);
     }
-    printf("\n");
-
-    free(v);
-
+    free(vetor); //libera a memoria
     return 0;
 }
