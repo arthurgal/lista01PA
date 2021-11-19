@@ -1,24 +1,24 @@
 #include <stdio.h>
-#include <stdlib.h>
+void lerVetor(int *pvetor, int tamanho);
+void imprimeVetor(int *pvetor, int tamanho);
 
-/* ponteiros para função é a mesma coisa que um ponteiro é para um inteiro, ele guarda
-  endereço de uma função, sendo possível acessa-lo atravez de uma variável do tipo ponteiro para função
-  ponteiro. O nde a funcao pode ser passadoa como argumentos para outras funções. */
-
-// EXEMPLO
-
-int valores[] = {50, 10, 100, 90, 30, 35};
-
-int compare(const void *x, const void *y)
-{
-  return (*(int *)x - *(int *)y);
-}//Função comparação
-
-int main()
-{
-  int n;
-  qsort(valores, 6, sizeof(int), compare);
-  for (n = 0; n < 6; n++)
-    printf("%d ", values[n]);
-  return 0;
-}//Fim código
+int main(){
+    int tamanho;
+    scanf("%d", &tamanho);
+    int vetor[tamanho];
+    lerVetor(vetor, tamanho);
+    imprimeVetor(vetor, tamanho);
+    return 0;
+}
+void lerVetor(int *pvetor, int tamanho){
+    for(int i = 0; i<tamanho;i++){
+        printf("Digite o valor da posicao %d: \n", i+1);
+        scanf("%d", &pvetor[i]);
+    }
+}
+void imprimeVetor(int *pvetor, int tamanho){
+    printf("Valores digitados: \n");
+    for(int i = 0; i<tamanho;i++){
+        printf("Posicao %d: %d\n", i+1, pvetor[i]);
+    }
+}
